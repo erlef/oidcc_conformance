@@ -1,6 +1,62 @@
 # Openid Foundation Certification
 
-This branch contains support materials for the certification.
+<br clear="left"/>
+
+<picture style="margin-right: 15px; float: left;">
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="assets/certified-dark.svg"
+    width="170px"
+    align="left"
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="assets/certified-light.svg"
+    width="170px"
+    align="left"
+  />
+  <img
+    src="assets/certified-light.svg"
+    alt="OpenID Connect Certified Logo"
+    width="170px"
+    align="left"
+  />
+</picture>
+
+This repository contains support materials for conformance testing
+and certification.
+
+[![EEF Security WG project](https://img.shields.io/badge/EEF-Security-black)](https://github.com/erlef/security-wg)
+[![License](https://img.shields.io/hexpm/l/oidcc.svg)](https://github.com/erlef/oidcc/blob/main/LICENSE)
+
+<br clear="left"/>
+
+<picture style="margin-right: 15px; float: left;">
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="assets/erlef-logo-dark.svg"
+    width="170px"
+    align="left"
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="assets/erlef-logo-light.svg"
+    width="170px"
+    align="left"
+  />
+  <img
+    src="assets/erlef-logo-light.svg"
+    alt="Erlang Ecosystem Foundation Logo"
+    width="170px"
+    align="left"
+  />
+</picture>
+
+The certification is funded as an
+[Erlang Ecosystem Foundation](https://erlef.org/) stipend entered by the
+[Security Working Group](https://erlef.org/wg/security).
+
+<br clear="left"/>
 
 ## Files
 
