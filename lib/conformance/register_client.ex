@@ -38,6 +38,31 @@ defmodule Conformance.RegisterClient do
   def handle_call(:client_secret, _from, {client_id, client_secret}),
     do: {:reply, client_secret, {client_id, client_secret}}
 
-  def client_id, do: GenServer.call(__MODULE__, :client_id)
-  def client_secret, do: GenServer.call(__MODULE__, :client_secret)
+  def client_id do
+    if GenServer.whereis(__MODULE__) do
+      GenServer.call(__MODULE__, :client_id)
+    else
+      "client_id"
+    end
+  end
+
+  def client_secret do
+    if GenServer.whereis(__MODULE__) do
+      GenServer.call(__MODULE__, :client_secret)
+    else
+      "client_secret"
+    end
+  end
+
+  def client_context_opts do
+    %{
+      client_jwks: JOSE.JWK.from_file("./artifacts/client.priv.jwkset")
+    }
+  end
+
+  def client_profile_opts do
+    %{
+      profiles: [:fapi2_security_profile]
+    }
+  end
 end

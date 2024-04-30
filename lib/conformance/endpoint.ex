@@ -18,11 +18,11 @@ defmodule Conformance.Endpoint do
 
   plug(Conformance.Router)
 
-  @impl Phoenix.Endpoint
   def init(_context, config) do
-    %URI{host: host, port: port, scheme: scheme} =
-      URI.new!(Ngrok.public_url(Conformance.Ngrok))
+    # %URI{host: host, port: port, scheme: scheme} =
+    #   URI.new!(Ngrok.public_url(Conformance.Ngrok))
 
-    {:ok, Keyword.put(config, :url, path: "/", host: host, port: port, scheme: scheme)}
+    # {:ok, Keyword.put(config, :url, path: "/", host: host, port: port, scheme: scheme)}
+    {:ok, config}
   end
 end

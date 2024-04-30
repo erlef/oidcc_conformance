@@ -26,7 +26,17 @@ defmodule Conformance.Supervisor do
       {Oidcc.ProviderConfiguration.Worker,
        %{
          issuer: "https://www.certification.openid.net/test/a/#{alias_name}/",
-         name: Conformance.ConfigWorker
+         name: Conformance.ConfigWorker,
+         provider_configuration_opts: %{
+           quirks: %{
+             document_overrides: %{
+               # https://gitlab.com/openid/conformance-suite/-/issues/1323
+               "subject_types_supported" => ["pairwise", "public"],
+               # https://gitlab.com/openid/conformance-suite/-/issues/1324
+               "code_challenge_methods_supported" => ["S256"]
+             }
+           }
+         }
        }},
       if(register_client?, do: {Conformance.RegisterClient, register_client_opts}),
       unless(start_server?, do: Conformance.AutoStopper)

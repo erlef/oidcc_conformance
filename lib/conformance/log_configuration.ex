@@ -10,7 +10,10 @@ defmodule Conformance.LogConfiguration do
     ref =
       :telemetry_test.attach_event_handlers(self(), [
         [:oidcc, :load_configuration, :stop],
-        [:oidcc, :load_jwks, :stop]
+        [:oidcc, :load_jwks, :stop],
+        [:oidcc, :par_request, :start],
+        [:oidcc, :par_request, :stop],
+        [:oidcc, :par_request, :exception]
       ])
 
     {:ok, ref}
@@ -38,6 +41,11 @@ defmodule Conformance.LogConfiguration do
     Loaded Jwks: #{inspect(jwks, pretty: true)}
     """)
 
+    {:noreply, ref}
+  end
+
+  def handle_info({[:oidcc | _topic], ref, _measurement, _meta} = event, ref) do
+    Logger.info("Event Received: #{inspect(event, pretty: true)}")
     {:noreply, ref}
   end
 end
