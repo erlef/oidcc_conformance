@@ -19,8 +19,8 @@ defmodule Conformance.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:oidcc, "~> 3.0"},
-      {:oidcc_plug, "~> 0.1.0"},
+      {:oidcc, "~> 3.2.0"},
+      {:oidcc_plug, "~> 0.2.0-beta"},
       {:plug_cowboy, "~> 2.5"},
       {:phoenix, "~> 1.7"},
       {:jason, "~> 1.4"},

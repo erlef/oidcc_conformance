@@ -126,6 +126,22 @@ The certification is funded as an
 - Response Mode: `default`
 - Client Registration Type: `dynamic_client`
 
+#### FAPI2-Security-Profile-ID2: Relying Party (client) test
+
+- **Relevant for Certification: Yes**
+- Id: `fapi2-security-profile-id2-client-test-plan`
+- Client Authentication Type: `private_key_jwt`
+- Sender COnstraining: `dpop`
+- FAPI Client Type: `oidc`
+- FAPI Profile: `plain_fapi`
+- Server
+  - jwks: `./artifacts/server.priv.jwkset`
+- Client
+  - client_id: `client_id`
+  - scope: `openid profile`
+  - redirect_uri: `http://localhost:4000/callback`
+  - jwks: `./artifacts/client.pub.jwkset`
+
 ## How to Execute the tests
 
 ### Setup

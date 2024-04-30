@@ -19,7 +19,8 @@ defmodule Mix.Tasks.RunCertification do
     auto_stop: :boolean,
     auto_open: :boolean,
     auto_screenshot: :boolean,
-    token_endpoint_auth_method: :string
+    token_endpoint_auth_method: :string,
+    call_accounts: :string
   ]
 
   @project_root __ENV__.file |> Path.dirname() |> Path.join("../../..") |> Path.expand()
@@ -47,7 +48,8 @@ defmodule Mix.Tasks.RunCertification do
       auto_stop: auto_stop?,
       auto_open: auto_open?,
       auto_screenshot: auto_screenshot?,
-      token_endpoint_auth_method: token_endpoint_auth_method
+      token_endpoint_auth_method: token_endpoint_auth_method,
+      call_accounts: call_accounts
     } =
       opts
       |> Keyword.put_new(:alias, "test")
@@ -68,6 +70,7 @@ defmodule Mix.Tasks.RunCertification do
       |> Keyword.put_new(:auto_open, false)
       |> Keyword.put_new(:auto_screenshot, false)
       |> Keyword.put_new(:token_endpoint_auth_method, "client_secret_basic")
+      |> Keyword.put_new(:call_accounts, false)
       |> Map.new()
 
     artifact_out_dir = Path.join([@project_root, "test_plans", version, profile])
@@ -89,6 +92,8 @@ defmodule Mix.Tasks.RunCertification do
       enable: auto_screenshot?,
       path: Path.join(artifact_out_dir, "#{test_name}.png")
     )
+
+    Application.put_env(:conformance, :call_accounts, call_accounts)
 
     {:ok, _pid} =
       Conformance.Supervisor.start_link(
